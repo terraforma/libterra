@@ -1,5 +1,5 @@
-# ifndef   __LIBTERRA_INCLUDE_VERSION_H_
-#  define  __LIBTERRA_INCLUDE_VERSION_H_ 1
+#ifndef  _LIBTERRA_INCLUDE_VERSION_H_
+#define  _LIBTERRA_INCLUDE_VERSION_H_
 
 namespace LibTerra
 {
@@ -24,4 +24,4 @@ public:
 	const unsigned int Patch() const { return m_patch; }
 };
 
-# endif /* __LIBTERRA_INCLUDE_VERSION_H_ */
+#endif /* _LIBTERRA_INCLUDE_VERSION_H_ */
