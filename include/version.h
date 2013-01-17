@@ -5,9 +5,25 @@ namespace LibTerra
 {
 	class Version;
 
+	/*
+	============================================================
+		GetVersion
+
+		Returns a LibTerra::Version object which contains the
+		current version of terraforma
+	============================================================
+	*/
 	Version GetVersion();
 };
 
+/*
+================================================================
+	Version
+
+	Encapsulates the versioning system and provides access to
+	the major, minor, and patch versions.
+================================================================
+*/
 class LibTerra::Version
 {
 	friend Version GetVersion();
