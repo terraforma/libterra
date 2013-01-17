@@ -9,7 +9,7 @@ namespace
 
 //
 //	Return an structure that details the current version.
-const LibTerra::Version LibTerra::GetVersion()
+const LibTerra::tfVersion LibTerra::GetVersion()
 {
-	return LibTerra::Version(VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH);
+	return LibTerra::tfVersion(VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH);
 }

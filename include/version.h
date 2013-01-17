@@ -3,7 +3,7 @@
 
 namespace LibTerra
 {
-	class Version;
+	class tfVersion;
 
 	/*
 	============================================================
@@ -13,7 +13,7 @@ namespace LibTerra
 		current version of terraforma
 	============================================================
 	*/
-	Version GetVersion();
+	tfVersion GetVersion();
 };
 
 /*
@@ -24,15 +24,15 @@ namespace LibTerra
 	the major, minor, and patch versions.
 ================================================================
 */
-class LibTerra::Version
+class LibTerra::tfVersion
 {
-	friend Version GetVersion();
+	friend tfVersion GetVersion();
 private:
 	const unsigned int m_major;
 	const unsigned int m_minor;
 	const unsigned int m_patch;
 
-	Version(const unsigned int _major, const unsigned int _minor, const unsigned int _patch) :
+	tfVersion(const unsigned int _major, const unsigned int _minor, const unsigned int _patch) :
 		m_major(_major), m_minor(_minor), m_patch(_patch) {}
 public:
 	const unsigned int Major() const { return m_major; }
