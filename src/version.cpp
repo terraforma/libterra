@@ -7,9 +7,11 @@ namespace
 	};
 };
 
-//
-//	Return an structure that details the current version.
-const LibTerra::tfVersion LibTerra::GetVersion()
-{
-	return LibTerra::tfVersion(VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH);
+namespace LibTerra {
+	//
+	//	Return an structure that details the current version.
+	const tfVersion GetVersion()
+	{
+		return tfVersion(VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH);
+	}
 }

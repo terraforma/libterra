@@ -13,7 +13,7 @@ namespace LibTerra
 		current version of terraforma
 	============================================================
 	*/
-	tfVersion GetVersion();
+	const tfVersion GetVersion();
 
 	/*
 	================================================================
@@ -25,7 +25,7 @@ namespace LibTerra
 	*/
 	class tfVersion
 	{
-		friend tfVersion GetVersion();
+		friend const tfVersion GetVersion();
 	private:
 		const unsigned int m_major;
 		const unsigned int m_minor;
