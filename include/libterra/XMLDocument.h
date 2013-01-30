@@ -17,7 +17,7 @@ namespace LibTerra {
 		tfXMLNode Child(const char* name) const;
 	private:
 		pugi::xml_document m_document;
-		char* m_lastError;
+		char m_lastError[256];
 	};
 
 	class tfXMLNode {
@@ -29,6 +29,7 @@ namespace LibTerra {
 		const char*	Name() const;
 		const char*	Value() const;
 		bool		Valid() const;
+		const char* 	ChildValue() const;
 
 		tfXMLNode	Child(const char* _name) const;
 		tfXMLAttribute	Attribute(const char* _name) const;

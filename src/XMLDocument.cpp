@@ -4,14 +4,8 @@
 
 namespace LibTerra {
 	/* tfXMLDocument */
-	tfXMLDocument::tfXMLDocument() {
-		m_lastError = new char[256];
-	}
-	tfXMLDocument::~tfXMLDocument() {
-		if (m_lastError != 0) {
-			delete[] m_lastError;
-		}
-	}
+	tfXMLDocument::tfXMLDocument() { }
+	tfXMLDocument::~tfXMLDocument() { }
 
 	bool tfXMLDocument::Parse(const char* _file)
 	{
@@ -47,6 +41,10 @@ namespace LibTerra {
 
 	bool tfXMLNode::Valid() const {
 		return !m_xmlNode.empty();
+	}
+
+	const char* tfXMLNode::ChildValue() const {
+		return m_xmlNode.child_value();
 	}
 
 	tfXMLNode tfXMLNode::Child(const char* _name) const {
