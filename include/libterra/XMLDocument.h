@@ -32,6 +32,18 @@ namespace LibTerra {
 		tfXMLAttribute FirstAttribute() const;
 		tfXMLAttribute LastAttribute() const;
 
+		tfXMLNode AppendChild(const char* _name);
+		tfXMLNode PrependChild(const char* _name);
+		tfXMLNode InsertChildBefore(const char* _name, const tfXMLNode& _other);
+		tfXMLNode InsertChildAfter(const char* _name, const tfXMLNode& _other);
+		bool RemoveChild(const tfXMLNode& _node);
+
+		tfXMLAttribute AppendAttribute(const char* _name);
+		tfXMLAttribute PrependAttribute(const char* _name);
+		tfXMLAttribute InsertAttributeBefore(const char* _name, const tfXMLAttribute& _other);
+		tfXMLAttribute InsertAttributeAfter(const char* _name, const tfXMLAttribute& _other);
+		bool RemoveAttribute(const tfXMLAttribute& _attribute);
+
 	protected:
 		pugi::xml_node m_xmlNode;
 	};
@@ -49,6 +61,7 @@ namespace LibTerra {
 		void SetValue(const char* _value);
 
 	private:
+		friend class tfXMLNode;
 		pugi::xml_attribute m_xmlAttribute;
 	};
 

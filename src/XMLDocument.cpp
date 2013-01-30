@@ -69,6 +69,46 @@ namespace LibTerra {
 		return m_xmlNode.last_attribute();
 	}
 
+	tfXMLNode tfXMLNode::AppendChild(const char* _name) {
+		return m_xmlNode.append_child(_name);
+	}
+
+	tfXMLNode tfXMLNode::PrependChild(const char* _name) {
+		return m_xmlNode.prepend_child(_name);
+	}
+
+	tfXMLNode tfXMLNode::InsertChildBefore(const char* _name, const tfXMLNode& _other) {
+		return m_xmlNode.insert_child_before(_name, _other.m_xmlNode);
+	}
+
+	tfXMLNode tfXMLNode::InsertChildAfter(const char* _name, const tfXMLNode& _other) {
+		return m_xmlNode.insert_child_after(_name, _other.m_xmlNode);
+	}
+
+	bool tfXMLNode::RemoveChild(const tfXMLNode& _node) {
+		return m_xmlNode.remove_child(_node.m_xmlNode);
+	}
+
+	tfXMLAttribute tfXMLNode::AppendAttribute(const char* _name) {
+		return m_xmlNode.append_attribute(_name);
+	}
+
+	tfXMLAttribute tfXMLNode::PrependAttribute(const char* _name) {
+		return m_xmlNode.prepend_attribute(_name);
+	}
+
+	tfXMLAttribute tfXMLNode::InsertAttributeBefore(const char* _name, const tfXMLAttribute& _other) {
+		return m_xmlNode.insert_attribute_before(_name, _other.m_xmlAttribute);
+	}
+
+	tfXMLAttribute tfXMLNode::InsertAttributeAfter(const char* _name, const tfXMLAttribute& _other) {
+		return m_xmlNode.insert_attribute_after(_name, _other.m_xmlAttribute);
+	}
+
+	bool tfXMLNode::RemoveAttribute(const tfXMLAttribute& _attribute) {
+		return m_xmlNode.remove_attribute(_attribute.m_xmlAttribute);
+	}
+
 	/* tfXMLAttribute */
 	tfXMLAttribute::tfXMLAttribute() {}
 	tfXMLAttribute::tfXMLAttribute(pugi::xml_attribute _attribute)
