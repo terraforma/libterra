@@ -25,6 +25,14 @@ namespace LibTerra {
 		return m_xmlNode.child_value();
 	}
 
+	void tfXMLNode::SetName(const char* _name) {
+		m_xmlNode.set_name(_name);
+	}
+
+	void tfXMLNode::SetValue(const char* _value) {
+		m_xmlNode.set_value(_value);
+	}
+
 	tfXMLNode tfXMLNode::Child(const char* _name) const {
 		return m_xmlNode.child(_name);
 	}
@@ -73,6 +81,14 @@ namespace LibTerra {
 
 	const char* tfXMLAttribute::Value() const {
 		return m_xmlAttribute.value();
+	}
+
+	void tfXMLAttribute::SetName(const char* _name) {
+		m_xmlAttribute.set_name(_name);
+	}
+
+	void tfXMLAttribute::SetValue(const char* _value) {
+		m_xmlAttribute.set_value(_value);
 	}
 
 	/* tfXMLDocument */

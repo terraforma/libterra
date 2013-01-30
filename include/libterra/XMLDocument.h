@@ -17,6 +17,9 @@ namespace LibTerra {
 		bool		Valid() const;
 		const char* 	ChildValue() const;
 
+		void SetName(const char* _name);
+		void SetValue(const char* _value);
+
 		tfXMLNode	Child(const char* _name) const;
 		tfXMLAttribute	Attribute(const char* _name) const;
 
@@ -41,6 +44,9 @@ namespace LibTerra {
 
 		const char* Name() const;
 		const char* Value() const;
+
+		void SetName(const char* _name);
+		void SetValue(const char* _value);
 
 	private:
 		pugi::xml_attribute m_xmlAttribute;
