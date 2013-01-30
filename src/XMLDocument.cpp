@@ -14,7 +14,7 @@ namespace LibTerra {
 	}
 
 	const char* tfXMLNode::Value() const {
-		return m_xmlNode.value();
+		return m_xmlNode.text().get();
 	}
 
 	bool tfXMLNode::Valid() const {
@@ -30,7 +30,7 @@ namespace LibTerra {
 	}
 
 	void tfXMLNode::SetValue(const char* _value) {
-		m_xmlNode.set_value(_value);
+		m_xmlNode.text().set(_value);
 	}
 
 	tfXMLNode tfXMLNode::Child(const char* _name) const {
