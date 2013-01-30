@@ -74,9 +74,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\version.cpp" />
+    <ClCompile Include="src\XMLDocument.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\libterra\version.h" />
+    <ClInclude Include="include\libterra\XMLDocument.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
