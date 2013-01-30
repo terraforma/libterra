@@ -79,8 +79,7 @@ namespace LibTerra {
 	tfXMLDocument::tfXMLDocument() : tfXMLNode(m_document) { }
 	tfXMLDocument::~tfXMLDocument() { }
 
-	bool tfXMLDocument::Parse(const char* _file)
-	{
+	bool tfXMLDocument::Parse(const char* _file) {
 		pugi::xml_parse_result result = m_document.load_file(_file);
 		if (!result) {
 			sprintf(m_lastError, "%s", result.description());
@@ -88,6 +87,10 @@ namespace LibTerra {
 		}
 		m_xmlNode = m_document;
 		return true;
+	}
+
+	bool tfXMLDocument::Write(const char* _file) {
+		return m_document.save_file(_file);
 	}
 
 	const char* tfXMLDocument::LastError() const {
