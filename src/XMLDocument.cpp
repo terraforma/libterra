@@ -3,28 +3,6 @@
 #include <cstdio>
 
 namespace LibTerra {
-	/* tfXMLDocument */
-	tfXMLDocument::tfXMLDocument() { }
-	tfXMLDocument::~tfXMLDocument() { }
-
-	bool tfXMLDocument::Parse(const char* _file)
-	{
-		pugi::xml_parse_result result = m_document.load_file(_file);
-		if (!result) {
-			sprintf(m_lastError, "%s", result.description());
-			return false;
-		}
-		return true;
-	}
-
-	const char* tfXMLDocument::LastError() const {
-		return (const char*)m_lastError;
-	}
-
-	tfXMLNode tfXMLDocument::Child(const char* name) const {
-		return m_document.child(name);
-	}
-
 	/* tfXMLNode */
 	tfXMLNode::tfXMLNode() { }
 	tfXMLNode::tfXMLNode(pugi::xml_node _node)
@@ -95,5 +73,24 @@ namespace LibTerra {
 
 	const char* tfXMLAttribute::Value() const {
 		return m_xmlAttribute.value();
+	}
+
+	/* tfXMLDocument */
+	tfXMLDocument::tfXMLDocument() : tfXMLNode(m_document) { }
+	tfXMLDocument::~tfXMLDocument() { }
+
+	bool tfXMLDocument::Parse(const char* _file)
+	{
+		pugi::xml_parse_result result = m_document.load_file(_file);
+		if (!result) {
+			sprintf(m_lastError, "%s", result.description());
+			return false;
+		}
+		m_xmlNode = m_document;
+		return true;
+	}
+
+	const char* tfXMLDocument::LastError() const {
+		return (const char*)m_lastError;
 	}
 }

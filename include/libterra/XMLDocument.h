@@ -4,21 +4,7 @@
 #include <pugixml.hpp>
 
 namespace LibTerra {
-	class tfXMLNode;
 	class tfXMLAttribute;
-
-	class tfXMLDocument {
-	public:
-		tfXMLDocument();
-		virtual ~tfXMLDocument();
-
-		bool Parse(const char* _file);
-		const char* LastError() const;
-		tfXMLNode Child(const char* name) const;
-	private:
-		pugi::xml_document m_document;
-		char m_lastError[256];
-	};
 
 	class tfXMLNode {
 	public:
@@ -43,7 +29,7 @@ namespace LibTerra {
 		tfXMLAttribute FirstAttribute() const;
 		tfXMLAttribute LastAttribute() const;
 
-	private:
+	protected:
 		pugi::xml_node m_xmlNode;
 	};
 
@@ -58,6 +44,18 @@ namespace LibTerra {
 
 	private:
 		pugi::xml_attribute m_xmlAttribute;
+	};
+
+	class tfXMLDocument : public tfXMLNode {
+	public:
+		tfXMLDocument();
+		virtual ~tfXMLDocument();
+
+		bool Parse(const char* _file);
+		const char* LastError() const;
+	private:
+		pugi::xml_document m_document;
+		char m_lastError[256];
 	};
 }
 
