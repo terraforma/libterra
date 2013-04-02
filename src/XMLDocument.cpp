@@ -132,8 +132,18 @@ namespace LibTerra {
 	}
 
 	/* tfXMLDocument */
-	tfXMLDocument::tfXMLDocument() : tfXMLNode(m_document) { }
+	tfXMLDocument::tfXMLDocument() {
+
+	}
 	tfXMLDocument::~tfXMLDocument() { }
+
+	tfXMLNode tfXMLDocument::CreateRoot(const char* name) {
+		m_root = m_document.append_child(name);
+		return m_root;
+	}
+	tfXMLNode tfXMLDocument::Root() {
+		return m_root;
+	}
 
 	bool tfXMLDocument::Parse(const char* _file) {
 		pugi::xml_parse_result result = m_document.load_file(_file);
@@ -141,7 +151,6 @@ namespace LibTerra {
 			sprintf(m_lastError, "%s", result.description());
 			return false;
 		}
-		m_xmlNode = m_document;
 		return true;
 	}
 

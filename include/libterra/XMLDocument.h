@@ -65,16 +65,21 @@ namespace LibTerra {
 		pugi::xml_attribute m_xmlAttribute;
 	};
 
-	class tfXMLDocument : public tfXMLNode {
+	class tfXMLDocument {
 	public:
 		tfXMLDocument();
 		virtual ~tfXMLDocument();
 
+		tfXMLNode CreateRoot(const char* name);
+		tfXMLNode Root();
+
 		bool Parse(const char* _file);
 		bool Write(const char* _file);
 		const char* LastError() const;
+		
 	private:
 		pugi::xml_document m_document;
+		pugi::xml_node m_root;
 		char m_lastError[256];
 	};
 }
