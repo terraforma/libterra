@@ -33,6 +33,24 @@ namespace LibTerra {
 		stream << source;
 		return stream.str().c_str();
 	}
+
+	template <>
+	inline float Convert<const char*, float>(const char* source)
+	{
+		std::stringstream stream(source);
+		float f;
+		stream >> f;
+		return f;
+	}
+
+	template <>
+	inline int Convert<const char*, int>(const char* source)
+	{
+		std::stringstream stream(source);
+		int i;
+		stream >> i;
+		return i;
+	}
 }
 
 #endif /* _INCLUDE_LIBTERRA_TYPECONV_H_ */

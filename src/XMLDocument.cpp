@@ -151,6 +151,7 @@ namespace LibTerra {
 			sprintf(m_lastError, "%s", result.description());
 			return false;
 		}
+		m_root = m_document.first_child();
 		return true;
 	}
 

@@ -23,8 +23,8 @@ namespace LibTerra {
 		void RemoveNode(int nodeId);
 		void RemoveEdge(int nodeA, int nodeB);
 
-
 		tfVec3f Node(int nodeId);
+		std::map<int, tfVec3f> Nodes();
 		std::list<int> Edges(int nodeId);
 		bool NodeExists(int nodeId);
 		bool EdgeExists(int nodeA, int nodeB);

@@ -3,6 +3,10 @@
 #include <libterra/XMLDocument.h>
 #include <libterra/TypeConv.h>
 
+#include <cstring>
+
+#define max(x, y) (x > y ? x : y)
+
 namespace LibTerra {
 	tfRoadmap::tfRoadmap(float width, float height) 
 		: m_nextNodeId(0), m_width(width), m_height(height)
@@ -18,7 +22,24 @@ namespace LibTerra {
 		{
 			throw tfException("xml document invalid");
 		}
-		/* todo: complete */
+		tfXMLNode root = doc.Root();
+		m_width = Convert<const char*, float>(root.Child("width").ChildValue());
+		m_height = Convert<const char*, float>(root.Child("height").ChildValue());
+		tfXMLNode nodes = root.Child("nodes");
+		for (tfXMLNode node = nodes.FirstChild(); node.Valid(); node = node.NextSibling()) {
+			int id = Convert<const char*, int>(node.Attribute("id").Value());
+			m_nextNodeId = max(id, m_nextNodeId);
+			float absX = Convert<const char*, float>(node.Attribute("absX").Value());
+			float absY = Convert<const char*, float>(node.Attribute("absY").Value());
+			float absZ = Convert<const char*, float>(node.Attribute("absZ").Value());
+			m_nodes[id] = MakeVec3f(absX, absY, absZ);
+		}
+		tfXMLNode edges = root.Child("relations");
+		for (tfXMLNode edge = edges.FirstChild(); edge.Valid(); edge = edge.NextSibling()) {
+			int nodeA = Convert<const char*, int>(edge.Attribute("nodeA").Value());
+			int nodeB = Convert<const char*, int>(edge.Attribute("nodeB").Value());
+			AddEdge(nodeA, nodeB);
+		}
 	}
 	tfRoadmap::~tfRoadmap() 
 	{
@@ -44,6 +65,7 @@ namespace LibTerra {
 		tfXMLNode relations = root.AppendChild("relations");
 		// Nodes visited is a bitmap of nodes we know all edges have been printed for
 		bool nodesVisited[m_nextNodeId];
+		memset(nodesVisited, 0, m_nextNodeId);
 		for (std::map<int, std::list<int> >::iterator it = m_edges.begin(); it != m_edges.end(); ++it) {
 			int nodeId = it->first;
 			std::list<int> edges = it->second;
@@ -120,6 +142,10 @@ namespace LibTerra {
 			throw tfException("node doesn't exist");
 		}
 		return m_nodes[nodeId];
+	}
+	std::map<int, tfVec3f> tfRoadmap::Nodes()
+	{
+		return m_nodes;
 	}
 	std::list<int> tfRoadmap::Edges(int nodeId)
 	{
