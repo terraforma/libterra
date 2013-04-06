@@ -45,7 +45,10 @@ namespace LibTerra {
 	{
  
 	}
-
+	int tfRoadmap::NodeMaxId()
+	{
+		return m_nextNodeId;
+	}
 	void tfRoadmap::Export(std::string xml) 
 	{
 		tfXMLDocument doc;
@@ -143,10 +146,17 @@ namespace LibTerra {
 		}
 		return m_nodes[nodeId];
 	}
+
 	std::map<int, tfVec3f> tfRoadmap::Nodes()
 	{
 		return m_nodes;
 	}
+
+	std::map<int, std::list<int> > tfRoadmap::Edges()
+	{
+		return m_edges;
+	}
+
 	std::list<int> tfRoadmap::Edges(int nodeId)
 	{
 		if (!NodeExists(nodeId)) {

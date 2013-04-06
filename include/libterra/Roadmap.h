@@ -25,9 +25,12 @@ namespace LibTerra {
 
 		tfVec3f Node(int nodeId);
 		std::map<int, tfVec3f> Nodes();
+		std::map<int, std::list<int> > Edges();
 		std::list<int> Edges(int nodeId);
 		bool NodeExists(int nodeId);
 		bool EdgeExists(int nodeA, int nodeB);
+
+		int NodeMaxId();
 	private:
 		std::map<int, tfVec3f> m_nodes;
 		std::map<int, std::list<int> > m_edges;
