@@ -5,7 +5,7 @@
 
 #include <cstring>
 
-#define max(x, y) (x > y ? x : y)
+#define max(x, y) ((x) > (y) ? (x) : (y))
 
 namespace LibTerra {
 	tfRoadmap::tfRoadmap(float width, float height) 
@@ -67,7 +67,7 @@ namespace LibTerra {
 		}
 		tfXMLNode relations = root.AppendChild("relations");
 		// Nodes visited is a bitmap of nodes we know all edges have been printed for
-		bool nodesVisited[m_nextNodeId];
+		bool *nodesVisited = new bool[m_nextNodeId]; /* !_HACK__ [Alex Melbourne] : We should probably think of a better way to do this. Avoiding dynamic allocation is nice. */
 		memset(nodesVisited, 0, m_nextNodeId);
 		for (std::map<int, std::list<int> >::iterator it = m_edges.begin(); it != m_edges.end(); ++it) {
 			int nodeId = it->first;
@@ -81,6 +81,7 @@ namespace LibTerra {
 			}
 			nodesVisited[nodeId] = true;
 		}
+		delete[] nodesVisited;
 		if (!doc.Write(xml.c_str())) {
 			throw tfException("unable to write document");
 		}
