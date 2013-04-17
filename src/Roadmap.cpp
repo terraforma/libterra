@@ -7,7 +7,8 @@
 
 #define max(x, y) ((x) > (y) ? (x) : (y))
 
-namespace LibTerra {
+namespace LibTerra 
+{
 	tfRoadmap::tfRoadmap(float width, float height) 
 		: m_nextNodeId(0), m_width(width), m_height(height)
 	{
